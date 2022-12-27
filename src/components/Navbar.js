@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav
+      className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -15,8 +16,7 @@ export default function Navbar(props) {
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
           aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
+          aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -32,17 +32,18 @@ export default function Navbar(props) {
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          <div className={`form-check form-switch ${props.text}`}>
             <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={props.toggleMode}
             />
-            <button className="btn btn-primary" type="submit">
-              Search
-            </button>
-          </form>
+            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+              Enable Dark Mode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
@@ -55,6 +56,6 @@ Navbar.propTypes = {
 };
 
 Navbar.defaultProps = {
-    title: 'TextUtis',
-    aboutText: 'About'
-  };
+  title: "TextUtis",
+  aboutText: "About",
+};
