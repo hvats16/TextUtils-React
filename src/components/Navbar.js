@@ -1,14 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   return (
     <nav
       className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -27,7 +28,7 @@ export default function Navbar(props) {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">
+              <a className="nav-link active" href="/about">
                 {props.aboutText}
               </a>
             </li>
@@ -40,7 +41,9 @@ export default function Navbar(props) {
               id="flexSwitchCheckDefault"
               onClick={props.toggleMode}
             />
-            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">
+            <label
+              className="form-check-label"
+              htmlFor="flexSwitchCheckDefault">
               Enable Dark Mode
             </label>
           </div>
