@@ -21,8 +21,6 @@ export default function TextForm(props) {
     setText(event.target.value);
   };
   const handleCopy = () => {
-    var text = document.getElementById("myBox");
-    text.select();
     navigator.clipboard.writeText(text.value);
     props.showAlert("Copied to Clipboard!", "success");
   };
@@ -35,7 +33,7 @@ export default function TextForm(props) {
         <div className="mb-3">
           <textarea
             style={{
-              backgroundColor: props.mode === "light" ? "white" : "grey",
+              backgroundColor: props.mode === "light" ? "white" : "#13466e",
             }}
             className="form-control"
             value={text}
@@ -44,25 +42,29 @@ export default function TextForm(props) {
             onChange={handleOnCHange}></textarea>
         </div>
         <button
-          className="btn btn-primary mx-1"
+          disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
           onClick={handleUpperCaseClick}
           style={{ backgroundColor: props.mode === "light" ? "" : "	#696969" }}>
           Convert to UpperCase
         </button>
         <button
-          className="btn btn-primary mx-1"
+        disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
           onClick={handleLowerCaseClick}
           style={{ backgroundColor: props.mode === "light" ? "" : "	#696969" }}>
           Convert to LowerCase
         </button>
         <button
-          className="btn btn-primary mx-1"
+        disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
           onClick={clearText}
           style={{ backgroundColor: props.mode === "light" ? "" : "	#696969" }}>
           Clear Text
         </button>
         <button
-          className="btn btn-primary mx-1"
+        disabled = {text.length===0}
+          className="btn btn-primary mx-1 my-1"
           onClick={handleCopy}
           style={{ backgroundColor: props.mode === "light" ? "" : "	#696969" }}>
           Copy Text
@@ -73,7 +75,7 @@ export default function TextForm(props) {
           Your Text After Analyzing
         </h2>
         <p style={{ color: props.mode === "light" ? "black" : "white" }}>
-          Number of Words - {text.length > 0 ? text.split(" ").length : 0}
+          Number of Words - {text.split(/\s+/).filter((element)=>{return element.length!==0}).length}
         </p>
         <p style={{ color: props.mode === "light" ? "black" : "white" }}>
           Number of Charcter - {text.length}{" "}
